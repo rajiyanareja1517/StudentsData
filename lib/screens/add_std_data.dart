@@ -23,19 +23,18 @@ class _AddStdDataState extends State<AddStdData> {
     return Scaffold(
       body: Stack(
         children: [
+
           Container(
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              "lib/assets/background.png",
+              "lib/assets/add_bg.png",
               fit: BoxFit.fill,
             ),
           ),
+
           Container(
-              margin: EdgeInsets.only(top: 76),
-              child: Image.asset("lib/assets/icon_had.png")),
-          Container(
-            margin: EdgeInsets.only(top: 270, left: 20, right: 20),
+            margin: EdgeInsets.only(top: 250, left: 20, right: 20),
             child: ListView(
               children: [
                 Text(
@@ -294,13 +293,19 @@ class _AddStdDataState extends State<AddStdData> {
                           // button text
                         )),
                     onTap: () {
-                      Globle.stdList.add(
-                          StudentData(
-                          student_grid: userInputGRID.text,
-                          student_name: userInputNM.text,
-                          student_standard: userInputSTD.text,
-                          student_image: pickImagePath!));
+                      setState(() {
+                        Globle.stdList.add(StudentData(
+                            student_grid: userInputGRID.text,
+                            student_name: userInputNM.text,
+                            student_standard: userInputSTD.text,
+                            student_image: pickImagePath!));
+                      });
 
+                      userInputGRID.clear();
+                      userInputNM.clear();
+                      userInputSTD.clear();
+                      pickImagePath="";
+                      print(Globle.stdList.length);
                       final snackBar = SnackBar(
                         content: const Text('Add Record successfully!'),
                         backgroundColor: (Colors.green),
@@ -310,10 +315,17 @@ class _AddStdDataState extends State<AddStdData> {
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    })
+                    }),
+
               ],
             ),
-          )
+          ),
+          Container(
+            margin:EdgeInsets.only(top: 25,left: 10) ,
+              alignment: Alignment.topLeft,
+              child: IconButton( onPressed: () {
+                Navigator.of(context).pop();
+              }, icon:Icon(Icons.arrow_back_outlined,color: Colors.white,size: 32),)),
         ],
       ),
     );
