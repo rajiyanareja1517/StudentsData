@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:students_data/model/sudent_data.dart';
-import 'package:students_data/utils/globles.drt.dart';
+import 'package:students_data/utils/globles.dart';
 
 class AddStdData extends StatefulWidget {
   const AddStdData({super.key});
